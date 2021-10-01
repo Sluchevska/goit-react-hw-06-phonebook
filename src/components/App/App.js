@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import contactsActions from '../../redux/contacts-actions'
 
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
@@ -7,7 +9,7 @@ import { Container, TitleH1, TitleH2 } from './App.styled';
 
 import { v4 as uuidv4 } from 'uuid';
 
-export default function App() {
+function App() {
   const [contacts, setContacts] = useState([
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -69,10 +71,17 @@ export default function App() {
   return (
     <Container>
       <TitleH1>Phonebook</TitleH1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
       <TitleH2>Contacts</TitleH2>
       <Filter value={filter} onChange={changeFilter} onBlur={handleBlur} />
       <ContactList contacts={getVisibleContacts()} onRemove={deleteContact} />
     </Container>
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  onSubmit: add=>dispatch(contactsActions.addContacts(add))
+})
+
+export default connect(null, mapDispatchToProps)(App)
+ export {App}
