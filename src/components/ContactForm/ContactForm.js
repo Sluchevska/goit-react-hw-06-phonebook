@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { LabelInput, Input, Button } from './ContactForm.styled';
-import contactsActions from '../../redux/contacts-actions'
+import contactsActions from '../../redux/contacts-actions';
 
 export default function ContactForm() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -28,7 +28,7 @@ export default function ContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-dispatch(contactsActions.addContact(name, number))
+    dispatch(contactsActions.addContact(name, number));
     resetState();
   };
   return (
