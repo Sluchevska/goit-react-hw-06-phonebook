@@ -14,7 +14,7 @@ const addContact = createAction('contacts/addContact', (name, number) => {
 const deleteContact = createAction('contacts/deleteContact');
 
 const changeFilter = createAction('contacts/changeFilter');
-const onBlur = createAction('contacts/onBlur')
+const onBlur = createAction('contacts/onBlur');
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { deleteContact, addContact, changeFilter, onBlur };
