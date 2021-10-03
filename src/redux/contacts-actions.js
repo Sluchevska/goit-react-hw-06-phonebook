@@ -1,8 +1,7 @@
-import types from './contacts-type';
 import { createAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-const addContact = createAction(types.ADD, (name, number) => {
+const addContact = createAction('contacts/addContact', (name, number) => {
   return {
     payload: {
       id: uuidv4(),
@@ -12,9 +11,10 @@ const addContact = createAction(types.ADD, (name, number) => {
   };
 });
 
-const deleteContact = createAction('contacts/delete');
+const deleteContact = createAction('contacts/deleteContact');
 
 const changeFilter = createAction('contacts/changeFilter');
+const onBlur = createAction('contacts/onBlur')
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { deleteContact, addContact, changeFilter };
+export default { deleteContact, addContact, changeFilter, onBlur };
