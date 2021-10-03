@@ -1,6 +1,6 @@
 const ADD = 'contacts/add';
 const DELETE = 'contacts/delete';
-const CHANGE_FILTER = 'contacts/change_filter'
+const CHANGE_FILTER = 'contacts/changeFilter'
 
 
 
