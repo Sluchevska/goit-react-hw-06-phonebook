@@ -9,7 +9,7 @@ import {
 } from './ContactList.styled';
 
 function ContactList() {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const getVisibleContacts = (allContacts, filter) => {
     const normalizedFilter = filter.toLowerCase();
 
