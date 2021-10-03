@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch=> ({
 
 export default connect(mapStateToProps,mapDispatchToProps)(Filter);
 
-// Filter.propTypes = {
-//   value: PropTypes.string,
-//   onChange: PropTypes.func,
-// };
+Filter.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+};
