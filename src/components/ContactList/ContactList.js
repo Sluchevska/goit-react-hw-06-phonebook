@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import contactsActions from '../../redux/contacts-actions'
+import { useDispatch, useSelector } from 'react-redux';
+import contactsActions from '../../redux/contacts-actions';
 
 import {
   Span,
@@ -18,14 +17,19 @@ function ContactList() {
       name.toLowerCase().includes(normalizedFilter),
     );
   };
-  const contacts = useSelector(({contacts:{items, filter}}) => getVisibleContacts(items,filter));
+  const contacts = useSelector(({ contacts: { items, filter } }) =>
+    getVisibleContacts(items, filter),
+  );
   return (
     <ContainerItems>
       {contacts.map(({ id, name, number }) => (
-        <ContactItems key={id} >
+        <ContactItems key={id}>
           <Span>{name}: </Span>
           <Span>{number} </Span>
-          <Button type="button" onClick={()=>dispatch(contactsActions.deleteContact(id))} >
+          <Button
+            type="button"
+            onClick={() => dispatch(contactsActions.deleteContact(id))}
+          >
             Delete contact
           </Button>
         </ContactItems>
@@ -34,16 +38,4 @@ function ContactList() {
   );
 }
 
-
 export default ContactList;
-
-// ContactList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string,
-//       name: PropTypes.string,
-//       number: PropTypes.string,
-//     }),
-//   ),
-//   onRemove: PropTypes.func,
-// };
