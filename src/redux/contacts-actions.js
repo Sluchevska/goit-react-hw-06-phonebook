@@ -12,9 +12,9 @@ const addContact = createAction(types.ADD, (name, number) => {
   };
 });
 
-const deleteContacts = createAction(types.DELETE);
+const deleteContact = createAction(types.DELETE);
 
 const changeFilter = createAction(types.CHANGE_FILTER);
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { deleteContacts, addContact, changeFilter };
+export default { deleteContact, addContact, changeFilter };

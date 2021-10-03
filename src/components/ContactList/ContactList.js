@@ -25,7 +25,7 @@ function ContactList() {
         <ContactItems key={id} >
           <Span>{name}: </Span>
           <Span>{number} </Span>
-          <Button type="button" onClick={()=>dispatch(contactsActions.deleteContacts(id))} >
+          <Button type="button" onClick={()=>dispatch(contactsActions.deleteContact(id))} >
             Delete contact
           </Button>
         </ContactItems>
