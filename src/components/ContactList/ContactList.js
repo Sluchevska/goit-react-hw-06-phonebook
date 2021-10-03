@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import contactsActions from '../../redux/contacts-actions'
 
 import {
   Span,
@@ -14,7 +16,7 @@ function ContactList({ contacts, onRemove }) {
         <ContactItems key={id} name={name} number={number}>
           <Span>{name}: </Span>
           <Span>{number} </Span>
-          <Button type="button" onClick={() => onRemove(id)}>
+          <Button type="button" onRemove={()=>onRemove(id)} >
             Delete contact
           </Button>
         </ContactItems>
@@ -23,15 +25,23 @@ function ContactList({ contacts, onRemove }) {
   );
 }
 
-export default ContactList;
+const mapStateToProps = (state) => ({
+  contacts: state.contacts.items
+})
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    }),
-  ),
-  onRemove: PropTypes.func,
-};
+const mapDispatchToProps = dispatch => ({
+  onRemove: (id)=>dispatch (contactsActions(id))
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(ContactList);
+
+// ContactList.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string,
+//       name: PropTypes.string,
+//       number: PropTypes.string,
+//     }),
+//   ),
+//   onRemove: PropTypes.func,
+// };

@@ -27,61 +27,66 @@ function App() {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  function addContact(name, number) {
-    const doubleName = contacts.find(
-      contact => contact.name.toLowerCase() === name.toLowerCase(),
-    );
-    const doublePhoneNumber = contacts.find(
-      contact => contact.number === number,
-    );
-    doubleName && alert(`${name} is already in contacts`);
-    doublePhoneNumber && alert(`This number ${number} is already in contacts`);
+  // function addContact(name, number) {
+  //   const doubleName = contacts.find(
+  //     contact => contact.name.toLowerCase() === name.toLowerCase(),
+  //   );
+  //   const doublePhoneNumber = contacts.find(
+  //     contact => contact.number === number,
+  //   );
+  //   doubleName && alert(`${name} is already in contacts`);
+  //   doublePhoneNumber && alert(`This number ${number} is already in contacts`);
 
-    const newContact = {
-      id: uuidv4(),
-      name,
-      number,
-    };
-    !doublePhoneNumber &&
-      !doubleName &&
-      setContacts(prevContacts => [newContact, ...prevContacts]);
-  }
+  //   const newContact = {
+  //     id: uuidv4(),
+  //     name,
+  //     number,
+  //   };
+  //   !doublePhoneNumber &&
+  //     !doubleName &&
+  //     setContacts(prevContacts => [newContact, ...prevContacts]);
+  // }
 
-  const changeFilter = e => {
-    setFilter(e.currentTarget.value);
-  };
+  // // const changeFilter = e => {
+  // //   setFilter(e.currentTarget.value);
+  // // };
 
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter),
-    );
-  };
+  
 
   const handleBlur = e => {
     setFilter('');
     e.currentTarget.value = '';
   };
 
-  const deleteContact = contactId => {
-    setContacts(contacts.filter(contact => contact.id !== contactId));
-  };
+  // const deleteContact = contactId => {
+  //   setContacts(contacts.filter(contact => contact.id !== contactId));
+  // };
 
   return (
     <Container>
       <TitleH1>Phonebook</TitleH1>
       <ContactForm />
       <TitleH2>Contacts</TitleH2>
-      <Filter value={filter} onChange={changeFilter} onBlur={handleBlur} />
-      <ContactList contacts={getVisibleContacts()} onRemove={deleteContact} />
+      <Filter onBlur={handleBlur} />
+      <ContactList />
     </Container>
   );
 }
+const getVisibleContacts = (allContacts, filter) => {
+    const normalizedFilter = filter.toLowerCase();
 
+    return allContacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedFilter),
+    );
+  };
+
+const mapStateToProps = ({contacts:{items, filter}}) => ({
+  contacts: getVisibleContacts(items, filter)
+}
+)
 const mapDispatchToProps = dispatch => ({
   onSubmit: add=>dispatch(contactsActions.addContacts(add))
 })
 
-export default connect(null, mapDispatchToProps)(App)
- export {App}
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+

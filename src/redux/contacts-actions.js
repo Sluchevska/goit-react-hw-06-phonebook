@@ -9,4 +9,15 @@ const addContact = (name, number) => ({
       number,
 })
 
-export default addContact
+const deleteContacts = contactsID => ({
+  type: types.DELETE,
+  payload: contactsID
+})
+
+const changeFilter = value => ({
+  type: types.CHANGE_FILTER,
+  payload: value
+})
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {deleteContacts, addContact, changeFilter}
