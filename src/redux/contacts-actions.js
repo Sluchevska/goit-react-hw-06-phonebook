@@ -1,23 +1,20 @@
-import types from "./contacts-type"
+import types from './contacts-type';
+import { createAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-const addContact = (name, number) => ({
-    type: types.ADD,
-    payload:
-        uuidv4(),
+const addContact = createAction(types.ADD, (name, number) => {
+  return {
+    payload: {
+      id: uuidv4(),
       name,
       number,
-})
+    },
+  };
+});
 
-const deleteContacts = contactsID => ({
-  type: types.DELETE,
-  payload: contactsID
-})
+const deleteContacts = createAction(types.DELETE);
 
-const changeFilter = value => ({
-  type: types.CHANGE_FILTER,
-  payload: value
-})
+const changeFilter = createAction(types.CHANGE_FILTER);
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default {deleteContacts, addContact, changeFilter}
+export default { deleteContacts, addContact, changeFilter };
