@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import contactsActions from '../../redux/contacts-actions';
+import {getVisibleContacts} from '../../redux/contacts-selectors'
 
 import {
   Span,
@@ -10,16 +11,8 @@ import {
 
 function ContactList() {
   const dispatch = useDispatch();
-  const getVisibleContacts = (allContacts, filter) => {
-    const normalizedFilter = filter.toLowerCase();
-
-    return allContacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter),
-    );
-  };
-  const contacts = useSelector(({ contacts: { items, filter } }) =>
-    getVisibleContacts(items, filter),
-  );
+  
+  const contacts = useSelector(getVisibleContacts);
   return (
     <ContainerItems>
       {contacts.map(({ id, name, number }) => (
