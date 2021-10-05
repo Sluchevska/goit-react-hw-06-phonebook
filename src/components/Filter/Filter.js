@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { Input, LabelInput } from '../ContactForm/ContactForm.styled';
-import { connect } from 'react-redux';
 import contactsActions from '../../redux/contacts-actions';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -16,22 +15,12 @@ export default function Filter() {
         value={value}
         onChange={e => dispatch(contactsActions.changeFilter(e.target.value))}
         onBlur={e =>
-          dispatch(contactsActions.changeFilter(e.target.value = ''))
+          dispatch(contactsActions.changeFilter((e.target.value = '')))
         }
       />
     </label>
   );
 }
-// const mapStateToProps = state => ({
-//   value: state.contacts.filter,
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   onChange: e => dispatch(contactsActions.changeFilter(e.target.value)),
-//   onBlur: e => dispatch(contactsActions.changeFilter((e.target.value = ''))),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Filter);
 
 Filter.propTypes = {
   value: PropTypes.string,
