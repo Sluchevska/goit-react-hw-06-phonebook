@@ -23,11 +23,7 @@ const filter = createReducer('', {
   [contactsActions.changeFilter]: (_, action) => action.payload,
 });
 
-
-
 export default combineReducers({
   items,
   filter,
-
 });
-
