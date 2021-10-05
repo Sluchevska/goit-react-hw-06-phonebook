@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onChange: e => dispatch(contactsActions.changeFilter(e.target.value)),
-  onBlur: e => dispatch(contactsActions.onBlur((e.target.value = ''))),
+  onBlur: e => dispatch(contactsActions.changeFilter((e.target.value = ''))),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
