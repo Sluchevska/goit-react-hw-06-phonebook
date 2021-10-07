@@ -20,7 +20,7 @@ const items = createReducer(initialContacts, {
 });
 
 const filter = createReducer('', {
-  [contactsActions.changeFilter]: (_, action) => action.payload,
+  [contactsActions.changeFilter]: (_, {payload}) => payload,
 });
 
 export default combineReducers({
