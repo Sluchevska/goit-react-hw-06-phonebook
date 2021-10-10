@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import contactsActions from './contacts-actions';
-import initialContacts from '../components/data/initialContacts.json';
+import initialContacts from '../data/initialContacts.json';
 
 const items = createReducer(initialContacts, {
   
